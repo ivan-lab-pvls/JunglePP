@@ -2,10 +2,13 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:jungle_riches_app/model/user_item.dart';
 import 'package:jungle_riches_app/pages/choose_page.dart';
 import 'package:jungle_riches_app/pages/daily_reward.dart';
+import 'package:jungle_riches_app/pages/jungle_screen.dart';
 import 'package:jungle_riches_app/pages/setting_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -28,6 +31,7 @@ class _HomePageState extends State<HomePage> {
   String get timerText =>
       '${((timerMaxSeconds - currentSeconds) ~/ 60 ~/ 60).toString().padLeft(2, '0')}: ${((timerMaxSeconds - currentSeconds) ~/ 60 % 60).toString().padLeft(2, '0')}: ${((timerMaxSeconds - currentSeconds) % 60).toString().padLeft(2, '0')}';
 
+  String? _jungle;
   startTimeout([int? milliseconds]) {
     var duration = interval;
     Timer.periodic(duration, (timer) {
@@ -47,10 +51,27 @@ class _HomePageState extends State<HomePage> {
       setState(() {});
     });
     startTimeout();
+
+    _let();
+  }
+
+  void _let() async {
+    final j = FirebaseRemoteConfig.instance.getString('jungle');
+
+    if (!j.contains('isJungle')) {
+      await SystemChrome.setPreferredOrientations(
+          [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+      setState(() {
+        _jungle = j;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    if (_jungle != null) {
+      return JungleScreen(ji: _jungle!);
+    }
     return Scaffold(
         body: Container(
       decoration: const BoxDecoration(
