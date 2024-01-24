@@ -25,30 +25,30 @@ void main() async {
 
   final now = DateTime.now();
 
-  // final eight =
-  //     now.copyWith(hour: 8, minute: 0, second: 0).add(const Duration(days: 1));
-  // final ten =
-  //     now.copyWith(hour: 10, minute: 0, second: 0).add(const Duration(days: 1));
-  // final twelve =
-  //     now.copyWith(hour: 12, minute: 0, second: 0).add(const Duration(days: 1));
-  // final sixteen =
-  //     now.copyWith(hour: 16, minute: 0, second: 0).add(const Duration(days: 1));
-  // final eighteen =
-  //     now.copyWith(hour: 18, minute: 0, second: 0).add(const Duration(days: 1));
+  final eight =
+      now.copyWith(hour: 8, minute: 0, second: 0).add(const Duration(days: 1));
+  final ten =
+      now.copyWith(hour: 10, minute: 0, second: 0).add(const Duration(days: 1));
+  final twelve =
+      now.copyWith(hour: 12, minute: 0, second: 0).add(const Duration(days: 1));
+  final sixteen =
+      now.copyWith(hour: 16, minute: 0, second: 0).add(const Duration(days: 1));
+  final eighteen =
+      now.copyWith(hour: 18, minute: 0, second: 0).add(const Duration(days: 1));
 
-  // LocalNotifyService()
-  //     .scheduleNotification(scheduledNotificationDateTime: eight);
-  // LocalNotifyService().scheduleNotification(scheduledNotificationDateTime: ten);
-  // LocalNotifyService()
-  //     .scheduleNotification(scheduledNotificationDateTime: twelve);
-  // LocalNotifyService()
-  //     .scheduleNotification(scheduledNotificationDateTime: sixteen);
-  // LocalNotifyService()
-  //     .scheduleNotification(scheduledNotificationDateTime: eighteen);
-
-  final eight = now.add(const Duration(seconds: 40));
   LocalNotifyService()
       .scheduleNotification(scheduledNotificationDateTime: eight);
+  LocalNotifyService().scheduleNotification(scheduledNotificationDateTime: ten);
+  LocalNotifyService()
+      .scheduleNotification(scheduledNotificationDateTime: twelve);
+  LocalNotifyService()
+      .scheduleNotification(scheduledNotificationDateTime: sixteen);
+  LocalNotifyService()
+      .scheduleNotification(scheduledNotificationDateTime: eighteen);
+
+  // final eight = now.add(const Duration(seconds: 40));
+  // LocalNotifyService()
+  //     .scheduleNotification(scheduledNotificationDateTime: eight);
 
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);

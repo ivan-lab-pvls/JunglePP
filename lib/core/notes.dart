@@ -85,10 +85,8 @@ class LocalNotifyService {
     _localNotificationsPlugin.cancelAll();
   }
 
-   Future scheduleNotification(
+  Future scheduleNotification(
       {int id = 0,
-      String? title,
-      String? body,
       String? payLoad,
       required DateTime scheduledNotificationDateTime}) async {
     const androidDetail = AndroidNotificationDetails(
@@ -110,8 +108,8 @@ class LocalNotifyService {
 
     return _localNotificationsPlugin.zonedSchedule(
         id,
-        title,
-        body,
+        '', //Title
+        '', //Body
         tz.TZDateTime.from(
           scheduledNotificationDateTime,
           tz.local,
